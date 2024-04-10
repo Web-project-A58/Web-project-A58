@@ -24,3 +24,12 @@ export const loadSearchMovies = (searchTerm = '') => {
   const movies = searchMovies(searchTerm)
   return movies;
 };
+
+
+// Display trending gifs 
+
+// Search gifs
+
+// Display gif details 
+
+// Upload gif
