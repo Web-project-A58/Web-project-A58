@@ -3,6 +3,8 @@ import { toggleFavoriteStatus } from './events/favorites-events.js';
 import { q } from './events/helpers.js';
 import { loadPage, renderCategory, renderMovieDetails } from './events/navigation-events.js';
 import { renderSearchItems } from './events/search-events.js';
+import { search, displayResults } from './requests/search_test.js';
+import { makeUploadRequest } from './events/upload-events.js';
 
 document.addEventListener('DOMContentLoaded', () => {
 
@@ -29,12 +31,30 @@ document.addEventListener('DOMContentLoaded', () => {
       toggleFavoriteStatus(+event.target.getAttribute("data-movie-id"));
     }
 
+       // upload events
+    if (event.target.classList.contains("upload-button")) {
+    
+    event.preventDefault()
+    const fileInput = document.getElementById('fileInput');
+    const file = fileInput.files[0]; // Extract the file from the file input element
+    const tagsInput = document.getElementById('tagsInput').value; // Get the tags input value
+    console.dir(file)
+    makeUploadRequest(file, tagsInput);
+
+    //alert('Upload');
+    }
+
   });
 
   // search events
-  q('input#search').addEventListener('input', event => {
-    renderSearchItems(event.target.value);
-  });
+  // q('input#search').addEventListener('input', event => {
+  //   renderSearchItems(event.target.value);
+  // });
+  document.getElementById('searchButton').addEventListener('click', async () => {
+    const query = document.getElementById('search').value;
+    const results = await search(query);
+    displayResults(results);
+});
 
   loadPage(HOME);
 

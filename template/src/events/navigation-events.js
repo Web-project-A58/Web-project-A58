@@ -1,4 +1,4 @@
-import { ABOUT, CATEGORIES, CONTAINER_SELECTOR, FAVORITES, HOME } from '../common/constants.js';
+import { ABOUT, CATEGORIES, CONTAINER_SELECTOR, FAVORITES, HOME, UPLOAD } from '../common/constants.js';
 import { getFavorites } from '../data/favorites.js';
 import { getCategory, getMovieById, getMoviesGeneralInfo } from '../data/movies.js';
 import { loadCategories } from '../requests/request-service.js';
@@ -7,6 +7,7 @@ import { toCategoriesView } from '../views/category-view.js';
 import { toFavoritesView } from '../views/favorites-view.js';
 import { toHomeView } from '../views/home-view.js';
 import { toMoviesFromCategoryView, toSingleMovieView } from '../views/movie-views.js';
+import { toUploadView } from '../views/upload-view.js';
 import { q, setActiveNav } from './helpers.js';
 
 // public API
@@ -29,6 +30,10 @@ export const loadPage = (page = '') => {
     case ABOUT:
       setActiveNav(ABOUT);
       return renderAbout();
+
+    case UPLOAD:
+      setActiveNav(UPLOAD);
+      return renderUpload();
 
 
     /* if the app supports error logging, use default to log mapping errors */
@@ -72,4 +77,9 @@ const renderFavorites = () => {
 const renderAbout = () => {
   // missing implementation
   q(CONTAINER_SELECTOR).innerHTML = toAboutView();
+};
+
+const renderUpload = () => {
+  // missing implementation
+  q(CONTAINER_SELECTOR).innerHTML = toUploadView();
 };
