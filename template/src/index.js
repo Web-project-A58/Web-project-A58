@@ -4,6 +4,7 @@ import { q } from './events/helpers.js';
 import { loadPage, renderCategory, renderMovieDetails } from './events/navigation-events.js';
 import { renderSearchItems } from './events/search-events.js';
 import { search, displayResults } from './requests/search_test.js';
+import { makeUploadRequest } from './events/upload-events.js';
 
 document.addEventListener('DOMContentLoaded', () => {
 
@@ -37,7 +38,9 @@ document.addEventListener('DOMContentLoaded', () => {
     const fileInput = document.getElementById('fileInput');
     const file = fileInput.files[0]; // Extract the file from the file input element
     const tagsInput = document.getElementById('tagsInput').value; // Get the tags input value
+    console.dir(file)
     makeUploadRequest(file, tagsInput);
+
     //alert('Upload');
     }
 
