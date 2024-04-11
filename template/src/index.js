@@ -3,6 +3,7 @@ import { toggleFavoriteStatus } from './events/favorites-events.js';
 import { q } from './events/helpers.js';
 import { loadPage, renderCategory, renderMovieDetails } from './events/navigation-events.js';
 import { renderSearchItems } from './events/search-events.js';
+import { search, displayResults } from './requests/search_test.js';
 
 document.addEventListener('DOMContentLoaded', () => {
 
@@ -32,9 +33,14 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   // search events
-  q('input#search').addEventListener('input', event => {
-    renderSearchItems(event.target.value);
-  });
+  // q('input#search').addEventListener('input', event => {
+  //   renderSearchItems(event.target.value);
+  // });
+  document.getElementById('searchButton').addEventListener('click', async () => {
+    const query = document.getElementById('search').value;
+    const results = await search(query);
+    displayResults(results);
+});
 
   loadPage(HOME);
 
