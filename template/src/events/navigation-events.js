@@ -9,7 +9,8 @@ import { toHomeView } from '../views/home-view.js';
 import { toMoviesFromCategoryView, toSingleMovieView } from '../views/movie-views.js';
 import { toUploadView } from '../views/upload-view.js';
 import { q, setActiveNav } from './helpers.js';
-
+import { fetchTrendingGifs } from '../requests/request-service.js';
+import { LIMIT_GIFS } from '../common/constants.js';
 // public API
 export const loadPage = (page = '') => {
 
@@ -59,7 +60,9 @@ export const renderCategory = (categoryId = null) => {
 
 
 const renderHome = () => {
-  q(CONTAINER_SELECTOR).innerHTML = toHomeView();
+  fetchTrendingGifs(LIMIT_GIFS).then((data) => {
+    q(CONTAINER_SELECTOR).innerHTML = toHomeView(data);
+  });
 };
 
 const renderCategories = () => {
