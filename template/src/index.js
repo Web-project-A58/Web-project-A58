@@ -36,12 +36,9 @@ document.addEventListener('DOMContentLoaded', () => {
     
     event.preventDefault()
     const fileInput = document.getElementById('fileInput');
-    const file = fileInput.files[0]; // Extract the file from the file input element
-    const tagsInput = document.getElementById('tagsInput').value; // Get the tags input value
-    console.dir(file)
+    const file = fileInput.files[0]; 
+    const tagsInput = document.getElementById('tagsInput').value; 
     makeUploadRequest(file, tagsInput);
-
-    //alert('Upload');
     }
 
   });
