@@ -45,3 +45,13 @@ export const fetchTrendingGifs = async (limit) => {
     return console.error("Error fetching trending gifs:", error);
   }
 };
+
+export const fetchGifsById = async (gifId) => {
+  try {
+    const response = await fetch(`${API_URL}/${gifId}?api_key=${API_KEY}`);
+    const data = await response.json();
+    return data.data;
+  } catch (error) {
+    return console.error("Error fetching gif by id:", error);
+  }
+};
