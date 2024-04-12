@@ -11,6 +11,8 @@ import { toUploadView } from '../views/upload-view.js';
 import { q, setActiveNav } from './helpers.js';
 import { fetchTrendingGifs } from '../requests/request-service.js';
 import { LIMIT_GIFS } from '../common/constants.js';
+import { gifDetailedView } from '../views/gif-details-view.js';
+import { getDetails } from '../requests/gif-detailed.js';
 // public API
 export const loadPage = (page = '') => {
 
@@ -85,4 +87,11 @@ const renderAbout = () => {
 const renderUpload = () => {
   // missing implementation
   q(CONTAINER_SELECTOR).innerHTML = toUploadView();
+};
+
+
+export const renderGifDetailed = async (id = null) => {
+  // missing implementation
+  const gif = await getDetails(id);
+  q(CONTAINER_SELECTOR).innerHTML = gifDetailedView(gif);
 };
