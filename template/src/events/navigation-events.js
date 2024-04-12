@@ -1,7 +1,7 @@
 import { ABOUT, CATEGORIES, CONTAINER_SELECTOR, FAVORITES, HOME, UPLOAD } from '../common/constants.js';
 import { getFavorites } from '../data/favorites.js';
 import { getCategory, getMovieById, getMoviesGeneralInfo } from '../data/movies.js';
-import { loadCategories } from '../requests/request-service.js';
+import { fetchGifsById, loadCategories } from '../requests/request-service.js';
 import { toAboutView } from '../views/about-view.js';
 import { toCategoriesView } from '../views/category-view.js';
 import { toFavoritesView } from '../views/favorites-view.js';
@@ -13,6 +13,7 @@ import { fetchTrendingGifs } from '../requests/request-service.js';
 import { LIMIT_GIFS } from '../common/constants.js';
 import { gifDetailedView } from '../views/gif-details-view.js';
 import { getDetails } from '../requests/gif-detailed.js';
+import { getUploaded } from '../data/uploaded-gifs.js';
 // public API
 export const loadPage = (page = '') => {
 
@@ -79,9 +80,16 @@ const renderFavorites = () => {
   q(CONTAINER_SELECTOR).innerHTML = toFavoritesView(_movies);
 };
 
-const renderAbout = () => {
-  // missing implementation
-  q(CONTAINER_SELECTOR).innerHTML = toAboutView();
+const renderAbout = async () => {
+  const uploadedIds = getUploaded();
+  console.log(uploadedIds);
+  try {
+    const uploadedGifs = await Promise.all(uploadedIds.map(id => fetchGifsById(id)));
+    q(CONTAINER_SELECTOR).innerHTML = toAboutView(uploadedGifs);
+  } catch (error) {
+    console.error('Error fetching uploaded GIFs:', error);
+    // Handle error if needed
+  }
 };
 
 const renderUpload = () => {
