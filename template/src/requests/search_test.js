@@ -34,7 +34,10 @@ export function displayResults(results) {
     results.forEach(result => {
         const li = document.createElement('li');
         const img = document.createElement('img');
+        img.classList = 'img';
+        img.id = result.id;
         img.src = result.images.original.url; 
+        
         li.appendChild(img);
         ul.appendChild(li);
     });
