@@ -211,6 +211,12 @@ span.favorite:hover {
   color: rgb(187, 135, 255)
 }
 
+#container div {
+  display: grid ;
+  text-align: center;
+}
+
+
 /* End template styling */
 
 
@@ -324,10 +330,9 @@ span.favorite:hover {
   cursor: pointer;
 }
 
-#container div {
-  text-align: center;
-}
+
 
 #content #movie {
   align-items: center;
 }
+
