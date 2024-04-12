@@ -6,6 +6,7 @@ export const toAboutView = () => `
     <h3>Trending</h3>
     ${getUploaded().map((id) => {
             const test = fetchGifsById(id);
+            test.json();
             console.dir(test)
     }
         )} 

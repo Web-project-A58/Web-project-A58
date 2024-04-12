@@ -4,14 +4,14 @@ import { fetchGifsById } from "../requests/request-service.js";
 export const makeUploadRequest = async (fileInput, tags) => {
   const file = fileInput;
   const apiKey = 'AuFd7NG7BWm1LiIBrMoLT2Br9pIAT8Lr';
-  console.dir(fileInput);
+  
   const formData = new FormData();
   formData.append('file', file);
   formData.append('tags', tags);
 
   const url = `https://upload.giphy.com/v1/gifs?api_key=${apiKey}`;
 
-  console.dir(formData);
+  
 
   return await fetch(url, {
     method: 'POST',

@@ -27,13 +27,17 @@ export const loadSearchMovies = (searchTerm = '') => {
 };
 
 
-// Display trending gifs 
+// Display trending gifs -trending endpoint
 
-// Search gifs
+// Search gifs - search endpoint 
 
-// Display gif details 
+// Display gif details - fetch by id
 
-// Upload gif
+// Upload gif - post request
+
+// Upload view - fetch by id
+
+// Favorites view - fetch by id
 
 
 export const fetchTrendingGifs = async (limit) => {
@@ -55,3 +59,4 @@ export const fetchGifsById = async (gifId) => {
     return console.error("Error fetching gif by id:", error);
   }
 };
+
