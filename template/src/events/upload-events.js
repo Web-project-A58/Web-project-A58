@@ -1,3 +1,6 @@
+import { addUploaded, getUploaded } from "../data/uploaded-gifs.js";
+import { fetchGifsById } from "../requests/request-service.js";
+
 export const makeUploadRequest = async (fileInput, tags) => {
   const file = fileInput;
   const apiKey = 'AuFd7NG7BWm1LiIBrMoLT2Br9pIAT8Lr';
@@ -25,6 +28,7 @@ export const makeUploadRequest = async (fileInput, tags) => {
     return response.json();
   })
   .then(data => {
+    addUploaded(data.data.id);
     console.log('File uploaded successfully:', data);
     
   })
