@@ -1,13 +1,10 @@
-import { getUploaded } from "../data/uploaded-gifs.js";
-import { fetchGifsById } from "../requests/request-service.js";
-
-export const toAboutView = () => `
+export const toAboutView = (gifs) => `
 <div id="trending-gifs">
     <h3>Trending</h3>
-    ${getUploaded().map((id) => {
-            const test = fetchGifsById(id);
-            console.dir(test)
-    }
-        )} 
+    ${gifs.map((gif) => {
+      return `<img id=${gif.id} class="img" src=
+      ${gif.images.original.url}>`;
+    })} 
 </div>
 `;
+
