@@ -29,11 +29,6 @@ export const makeUploadRequest = async (fileInput, tags) => {
   })
   .then(data => {
     addUploaded(data.data.id);
-    console.log(getUploaded());
-    getUploaded().map(id => {
-      fetchGifsById(id)
-      console.log('1');
-    })
     console.log('File uploaded successfully:', data);
     
   })
