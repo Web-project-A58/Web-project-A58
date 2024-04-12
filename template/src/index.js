@@ -28,7 +28,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // toggle favorite event
     if (event.target.classList.contains("favorite")) {
-      toggleFavoriteStatus(+event.target.getAttribute("data-movie-id"));
+      toggleFavoriteStatus(+event.target.getAttribute("gifId"));
     }
 
        // upload events
