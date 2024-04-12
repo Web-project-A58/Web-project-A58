@@ -5,10 +5,7 @@ body {
   margin: 0;
 }
 
-body {
-  background: url('../images/dark-linen.png') repeat;
-  font-family: 'Roboto', sans-serif;
-}
+
 
 div#app {
   display: grid;
@@ -56,7 +53,7 @@ body {
   justify-content: center;
   align-items: center;
   min-height: 100vh;
-  background: #031321;
+  background: #3987c9;
   font-family: consolas;
 }
 
