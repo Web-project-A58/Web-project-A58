@@ -92,11 +92,11 @@ const renderCategories = () => {
   q(CONTAINER_SELECTOR).innerHTML = toCategoriesView(categories);
 };
 
-const renderFavorites = () => {
-  const _movies = getFavorites().map(getMovieById);
+// const renderFavorites = () => {
+//   const _movies = getFavorites().map(getMovieById);
 
-  q(CONTAINER_SELECTOR).innerHTML = toFavoritesView(_movies);
-};
+//   q(CONTAINER_SELECTOR).innerHTML = toFavoritesView(_movies);
+// };
 
 
 const renderAbout = async () => {
@@ -107,6 +107,17 @@ const renderAbout = async () => {
     q(CONTAINER_SELECTOR).innerHTML = toAboutView(uploadedGifs);
   } catch (error) {
     console.error('Error fetching uploaded GIFs:', error);
+  }
+};
+
+const renderFavorites = async () => {
+  const favoriteIds = getFavorites();
+  console.log(favoriteIds);
+  try {
+    const favorireGifs = await Promise.all(favoriteIds.map(id => fetchGifsById(id)));
+    q(CONTAINER_SELECTOR).innerHTML = toFavoritesView(favorireGifs);
+  } catch (error) {
+    console.error('Error fetching favorite GIFs:', error);
   }
 };
 

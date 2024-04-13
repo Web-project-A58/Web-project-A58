@@ -39,7 +39,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // toggle favorite event
     if (event.target.classList.contains("favorite")) {
-      toggleFavoriteStatus(+event.target.getAttribute("gifId"));
+      toggleFavoriteStatus(event.target.getAttribute("data-gif-id"));
     }
 
        // upload events
