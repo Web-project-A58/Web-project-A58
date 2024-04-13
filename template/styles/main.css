@@ -30,10 +30,10 @@ header {
 
 nav {
   grid-area: menu;
-  height: 60px;
+  height: 50px;
   background: url('../images//banner-bottom.png');
   font-size: 1.5em;
-  line-height: 60px;
+  line-height: 40px;
   padding: 1px;
   color: white;
   display: flex;
@@ -59,7 +59,7 @@ body {
 a {
   position: relative;
   display: inline-block;
-  padding: 5px 10px;
+  padding: 5px 5px;
   color: #2196f3;
   text-transform: uppercase;
   letter-spacing: 4px;
@@ -178,25 +178,32 @@ a.active {
 input#search {
   font-size: 20px;
   background-color: rgba(0, 0, 0, 0.8);
-  color: white;
-  border: 1px solid gray;
+  color: #2196f3;
+   border: 1px solid gray;
   border-radius: 4px;
-  height: 24px;
+  height: 40px;
   flex: 1 0;
   margin: auto;
 }
 
 button#searchButton {
-  font-size: 20px;
-  background-color: rgba(0, 0, 0, 0.8);
-  padding-top: 4px;
-  color: white;
-  border: 1px solid gray;
-  border-radius: 4px; 
-  height: 35px;
-  margin-top: 12px;
-  margin-left: 10px; 
-  cursor: pointer;
+  position: relative;
+  display: inline-block;
+  padding: 5px 10px;
+  color: #2196f3;
+  text-transform: uppercase;
+  letter-spacing: 4px;
+  text-decoration: none;
+  font-size: 12px;
+  overflow: hidden;
+  transition: 0.2s;
+}
+
+button#searchButton:hover {
+  color: #255784;
+  background: #2196f3;
+  box-shadow: 0 0 10px #2196f3, 0 0 40px #2196f3, 0 0 80px #2196f3;
+  transition-delay: 0.2s;
 }
 span.favorite {
   padding-left: 10px;
@@ -212,7 +219,8 @@ span.favorite:hover {
 }
 
 #container div {
-  display: grid ;
+  display: grid;
+  justify-content: space-around;
   text-align: center;
 }
 
