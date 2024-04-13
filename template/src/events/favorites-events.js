@@ -24,3 +24,6 @@ export const renderFavoriteStatus = (gifId) => {
     ? `<span class="favorite active" data-movie-id="${gifId}">${FULL_HEART}</span>`
     : `<span class="favorite" data-movie-id="${gifId}">${EMPTY_HEART}</span>`;
 };
+
+
+
