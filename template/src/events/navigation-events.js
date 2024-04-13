@@ -66,6 +66,7 @@ const renderHome = () => {
   fetchTrendingGifs(LIMIT_GIFS).then((data) => {
     q(CONTAINER_SELECTOR).innerHTML = toHomeView(data);
   });
+};
 /* 
 const renderHome = async () => {
   try {
