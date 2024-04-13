@@ -14,6 +14,8 @@ import { LIMIT_GIFS } from '../common/constants.js';
 import { gifDetailedView } from '../views/gif-details-view.js';
 import { getDetails } from '../requests/gif-detailed.js';
 import { getUploaded } from '../data/uploaded-gifs.js';
+import { toggleFavoriteStatus } from './favorites-events.js';
+import { renderFavoriteStatus } from './favorites-events.js';
 // public API
 export const loadPage = (page = '') => {
 
@@ -60,12 +62,27 @@ export const renderCategory = (categoryId = null) => {
   q(CONTAINER_SELECTOR).innerHTML = toMoviesFromCategoryView(_category,_movie);
 };
 
-
-
-const renderHome = () => {
+/* const renderHome = () => {
   fetchTrendingGifs(LIMIT_GIFS).then((data) => {
     q(CONTAINER_SELECTOR).innerHTML = toHomeView(data);
-  });
+  }); */
+
+const renderHome = async () => {
+  try {
+    const data = await fetchTrendingGifs(LIMIT_GIFS);
+    const container = q(CONTAINER_SELECTOR);
+    container.innerHTML = toHomeView(data);
+
+    container.querySelectorAll('.gif-container').forEach(gifContainer => {
+      const gifId = gifContainer.getAttribute('data-movie-id');
+      gifContainer.addEventListener('click', () => {
+        toggleFavoriteStatus(gifId);
+        renderFavoriteStatus(gifId); 
+      });
+    });
+  } catch (error) {
+    console.error("Error rendering home page:", error);
+  }
 };
 
 const renderCategories = () => {
@@ -88,7 +105,6 @@ const renderAbout = async () => {
     q(CONTAINER_SELECTOR).innerHTML = toAboutView(uploadedGifs);
   } catch (error) {
     console.error('Error fetching uploaded GIFs:', error);
-    // Handle error if needed
   }
 };
 
