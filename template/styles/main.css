@@ -34,7 +34,7 @@ nav {
   background: url('../images//banner-bottom.png');
   font-size: 1.5em;
   line-height: 60px;
-  padding: 10px;
+  padding: 1px;
   color: white;
   display: flex;
 }
@@ -42,7 +42,7 @@ nav {
 nav a {
   color: rgb(95, 191, 255);
    text-decoration: none;
-  margin: 0 10px;
+  margin: 0 70px;
 }
 
 body {
