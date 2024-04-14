@@ -1,3 +1,4 @@
+import { renderFavoriteStatus } from "../events/favorites-events.js";
 export const toSearchView = (gifs) =>  {
   if (gifs.length === 0) {
     return "No results found.";
@@ -6,7 +7,8 @@ export const toSearchView = (gifs) =>  {
    return `<div>
             ${gifs.map((gif) => {
                return `<img id=${gif.id} class="img" src=
-                 ${gif.images.original.url}>`;
+                 ${gif.images.original.url}>
+                 ${renderFavoriteStatus(gif.id)}`;
             }).join('')}
     </div>
   `;

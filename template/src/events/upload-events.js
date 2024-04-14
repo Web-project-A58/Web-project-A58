@@ -28,6 +28,7 @@ export const makeUploadRequest = async (fileInput, tags) => {
   })
   .then(data => {
     addUploaded(data.data.id);
+    console.dir((localStorage.getItem('uploaded')));
     console.log('File uploaded successfully:', data);
     
   })
