@@ -1,7 +1,5 @@
 export const HOME = 'home';
 
-export const CATEGORIES = 'categories';
-
 export const FAVORITES = 'favorites';
 
 export const UPLOADED = 'uploaded';

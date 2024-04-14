@@ -5,28 +5,16 @@ import { loadPage, renderGifDetailed } from './events/navigation-events.js';
 import { renderSearchItems } from './events/search-events.js';
 import { search } from './requests/search_test.js';
 import { makeUploadRequest } from './events/upload-events.js';
-import { getDetails } from './requests/gif-detailed.js';
-import { toSearchView } from './views/search-view.js';
 
 document.addEventListener('DOMContentLoaded', () => {
 
-  // add global listener
+
   document.addEventListener('click', event => {
 
-    // nav events
+
     if (event.target.classList.contains('nav-link')) {
       loadPage(event.target.getAttribute('data-page'));
     }
-
-    // // show category events
-    // if (event.target.classList.contains("view-category")) {
-    //   renderCategory(+event.target.getAttribute("category-id"));
-    // }
-
-    // // show movie events
-    // if (event.target.classList.contains("button")) {
-    //   renderMovieDetails(+event.target.getAttribute("data-movie-id"));
-    // }
 
     if (event.target.classList.contains("img")) {
       try {
@@ -37,12 +25,12 @@ document.addEventListener('DOMContentLoaded', () => {
     }
     }
 
-    // toggle favorite event
+
     if (event.target.classList.contains("favorite")) {
       toggleFavoriteStatus(event.target.getAttribute("data-gif-id"));
     }
 
-       // upload events
+
     if (event.target.classList.contains("upload-button")) {
     
     event.preventDefault()

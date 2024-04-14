@@ -1,5 +1,4 @@
 import { addUploaded, getUploaded } from "../data/uploaded-gifs.js";
-import { fetchGifsById } from "../requests/request-service.js";
 
 export const makeUploadRequest = async (fileInput, tags) => {
   const file = fileInput;
