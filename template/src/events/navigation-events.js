@@ -1,7 +1,7 @@
 import { CATEGORIES, CONTAINER_SELECTOR, FAVORITES, HOME, UPLOAD, UPLOADED } from '../common/constants.js';
 import { getFavorites } from '../data/favorites.js';
 //import { getCategory, getMovieById, getMoviesGeneralInfo } from '../data/movies.js';
-import { fetchGifsById } from '../requests/request-service.js';
+import { fetchGifsById, fetchGifsByIds } from '../requests/request-service.js';
 import { toUploadedView } from '../views/about-view.js';
 //import { toCategoriesView } from '../views/category-view.js';
 import { toFavoritesView } from '../views/favorites-view.js';
@@ -101,24 +101,26 @@ const renderHome = async () => {
 
 const renderUploaded = async () => {
   const uploadedIds = getUploaded();
-  console.log(uploadedIds);
-  try {
-    const uploadedGifs = await Promise.all(uploadedIds.map(id => fetchGifsById(id)));
-    q(CONTAINER_SELECTOR).innerHTML = toUploadedView(uploadedGifs);
-  } catch (error) {
-    console.error('Error fetching uploaded GIFs:', error);
-  }
+  fetchGifsByIds(uploadedIds).then((data) => {
+    q(CONTAINER_SELECTOR).innerHTML = toUploadedView(data);
+  });
 };
+  // console.log(uploadedIds);
+  // try {
+  //   //const uploaded = await fetchGifsById(uploadedIds.join(','));
+  //   //console.log(uploaded);
+  //   const uploadedGifs = await Promise.all(uploadedIds.map(id => fetchGifsById(id)));
+  //   q(CONTAINER_SELECTOR).innerHTML = toUploadedView(uploadedGifs);
+  // } catch (error) {
+  //   console.error('Error fetching uploaded GIFs:', error);
+  // }
+//};
 
 const renderFavorites = async () => {
   const favoriteIds = getFavorites();
-  console.log(favoriteIds);
-  try {
-    const favorireGifs = await Promise.all(favoriteIds.map(id => fetchGifsById(id)));
-    q(CONTAINER_SELECTOR).innerHTML = toFavoritesView(favorireGifs);
-  } catch (error) {
-    console.error('Error fetching favorite GIFs:', error);
-  }
+  fetchGifsByIds(favoriteIds).then((data) => {
+    q(CONTAINER_SELECTOR).innerHTML = toFavoritesView(data);
+  });
 };
 
 const renderUpload = () => {

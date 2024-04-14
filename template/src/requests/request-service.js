@@ -60,3 +60,14 @@ export const fetchGifsById = async (gifId) => {
   }
 };
 
+export const fetchGifsByIds = async (ids) => {
+  try {
+    const response = await fetch(`${API_URL}?api_key=${API_KEY}&ids=${ids}`);
+    const data = await response.json();
+    return data.data;
+  } catch (error) {
+    console.error("Error fetching GIFs by ID:", error);
+    throw error;
+  }
+};
+
