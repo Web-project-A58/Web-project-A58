@@ -1,4 +1,4 @@
-const apiKey = 'QkK7Vkqnn4Hl21IRnu0MZdwdcJ1qjHSZ';
+const apiKey = 'QRtpu48114xaSsIi8NBUTEeINLYD60xj';
 const apiURL = 'https://api.giphy.com/v1/gifs';
 
 export async function search(query) {

@@ -7,7 +7,7 @@ export const toSearchView = (gifs) =>  {
             ${gifs.map((gif) => {
                return `<img id=${gif.id} class="img" src=
                  ${gif.images.original.url}>`;
-            })}
+            }).join('')}
     </div>
   `;
 };
