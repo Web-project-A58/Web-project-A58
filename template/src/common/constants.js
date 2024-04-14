@@ -4,7 +4,7 @@ export const CATEGORIES = 'categories';
 
 export const FAVORITES = 'favorites';
 
-export const ABOUT = 'about';
+export const UPLOADED = 'uploaded';
 
 export const CONTAINER_SELECTOR = '#container';
 

@@ -1,4 +1,4 @@
-export const toAboutView = (gifs) => `
+export const toUploadedView = (gifs) => `
 <div id="trending-gifs">
     <h3>Trending</h3>
     ${gifs.map((gif) => {
