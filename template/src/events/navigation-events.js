@@ -1,12 +1,12 @@
 import { ABOUT, CATEGORIES, CONTAINER_SELECTOR, FAVORITES, HOME, UPLOAD } from '../common/constants.js';
 import { getFavorites } from '../data/favorites.js';
-import { getCategory, getMovieById, getMoviesGeneralInfo } from '../data/movies.js';
-import { fetchGifsById, loadCategories } from '../requests/request-service.js';
-import { toAboutView } from '../views/about-view.js';
-import { toCategoriesView } from '../views/category-view.js';
+//import { getCategory, getMovieById, getMoviesGeneralInfo } from '../data/movies.js';
+import { fetchGifsById } from '../requests/request-service.js';
+//import { toAboutView } from '../views/about-view.js';
+//import { toCategoriesView } from '../views/category-view.js';
 import { toFavoritesView } from '../views/favorites-view.js';
 import { toHomeView } from '../views/home-view.js';
-import { toMoviesFromCategoryView, toSingleMovieView } from '../views/movie-views.js';
+//import { toMoviesFromCategoryView, toSingleMovieView } from '../views/movie-views.js';
 import { toUploadView } from '../views/upload-view.js';
 import { q, setActiveNav } from './helpers.js';
 import { fetchTrendingGifs } from '../requests/request-service.js';
@@ -25,17 +25,17 @@ export const loadPage = (page = '') => {
       setActiveNav(HOME);
       return renderHome();
 
-    case CATEGORIES:
-      setActiveNav(CATEGORIES);
-      return renderCategories();
+    // case CATEGORIES:
+    //   setActiveNav(CATEGORIES);
+    //   return renderCategories();
 
     case FAVORITES:
       setActiveNav(FAVORITES);
       return renderFavorites();
 
-    case ABOUT:
-      setActiveNav(ABOUT);
-      return renderAbout();
+    // case ABOUT:
+    //   setActiveNav(ABOUT);
+    //   return renderAbout();
 
     case UPLOAD:
       setActiveNav(UPLOAD);
@@ -48,19 +48,19 @@ export const loadPage = (page = '') => {
 
 };
 
-export const renderMovieDetails = (id = null) => {
+// export const renderMovieDetails = (id = null) => {
 
-  const _movie = getMovieById(id);   
-  q(CONTAINER_SELECTOR).innerHTML = toSingleMovieView(_movie);
+//   const _movie = getMovieById(id);   
+//   q(CONTAINER_SELECTOR).innerHTML = toSingleMovieView(_movie);
 
-};
+// };
 
-export const renderCategory = (categoryId = null) => {
+// export const renderCategory = (categoryId = null) => {
  
-  const _movie = getMoviesGeneralInfo(categoryId)
-  const _category = getCategory(categoryId)
-  q(CONTAINER_SELECTOR).innerHTML = toMoviesFromCategoryView(_category,_movie);
-};
+//   const _movie = getMoviesGeneralInfo(categoryId)
+//   const _category = getCategory(categoryId)
+//   q(CONTAINER_SELECTOR).innerHTML = toMoviesFromCategoryView(_category,_movie);
+// };
 
 const renderHome = () => {
   fetchTrendingGifs(LIMIT_GIFS).then((data) => {
@@ -86,11 +86,11 @@ const renderHome = async () => {
   }
 }; */
 
-const renderCategories = () => {
+// const renderCategories = () => {
 
-  const categories = loadCategories()
-  q(CONTAINER_SELECTOR).innerHTML = toCategoriesView(categories);
-};
+//   const categories = loadCategories()
+//   q(CONTAINER_SELECTOR).innerHTML = toCategoriesView(categories);
+// };
 
 // const renderFavorites = () => {
 //   const _movies = getFavorites().map(getMovieById);
@@ -99,16 +99,16 @@ const renderCategories = () => {
 // };
 
 
-const renderAbout = async () => {
-  const uploadedIds = getUploaded();
-  console.log(uploadedIds);
-  try {
-    const uploadedGifs = await Promise.all(uploadedIds.map(id => fetchGifsById(id)));
-    q(CONTAINER_SELECTOR).innerHTML = toAboutView(uploadedGifs);
-  } catch (error) {
-    console.error('Error fetching uploaded GIFs:', error);
-  }
-};
+// const renderAbout = async () => {
+//   const uploadedIds = getUploaded();
+//   console.log(uploadedIds);
+//   try {
+//     const uploadedGifs = await Promise.all(uploadedIds.map(id => fetchGifsById(id)));
+//     q(CONTAINER_SELECTOR).innerHTML = toAboutView(uploadedGifs);
+//   } catch (error) {
+//     console.error('Error fetching uploaded GIFs:', error);
+//   }
+// };
 
 const renderFavorites = async () => {
   const favoriteIds = getFavorites();

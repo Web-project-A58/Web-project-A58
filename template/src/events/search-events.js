@@ -1,5 +1,5 @@
 import { CONTAINER_SELECTOR, FAVORITES } from "../common/constants.js";
-import { searchMovies } from "../data/movies.js";
+//import { searchMovies } from "../data/movies.js";
 import { toSearchView } from "../views/search-view.js";
 import { q, setActiveNav } from "./helpers.js";
 

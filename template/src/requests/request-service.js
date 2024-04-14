@@ -1,30 +1,30 @@
-import { getCategories, getMoviesGeneralInfo, getMovieById, getCategory, searchMovies } from '../data/movies.js';
+//import { getCategories, getMoviesGeneralInfo, getMovieById, getCategory, searchMovies } from '../data/movies.js';
 import { API_KEY,API_URL } from '../common/constants.js';
 
-export const loadCategories = () => {
-  const categories = getCategories();
-  return categories;
-};
+// export const loadCategories = () => {
+//   const categories = getCategories();
+//   return categories;
+// };
 
-export const loadCategory = (id = null) => {
-  const category = getCategory(id);
-  return category;
-}
+// export const loadCategory = (id = null) => {
+//   const category = getCategory(id);
+//   return category;
+// }
 
-export const loadMovies = (categoryId = null) => {
-  const movies = getMoviesGeneralInfo(categoryId)
-  return movies;
-};
+// export const loadMovies = (categoryId = null) => {
+//   const movies = getMoviesGeneralInfo(categoryId)
+//   return movies;
+// };
 
-export const loadSingleMovie = (id) => {
-  const movies = getMovieById(id);
-  return movies;
-};
+// export const loadSingleMovie = (id) => {
+//   const movies = getMovieById(id);
+//   return movies;
+// };
 
-export const loadSearchMovies = (searchTerm = '') => {
-  const movies = searchMovies(searchTerm)
-  return movies;
-};
+// export const loadSearchMovies = (searchTerm = '') => {
+//   const movies = searchMovies(searchTerm)
+//   return movies;
+// };
 
 
 // Display trending gifs -trending endpoint

@@ -1,9 +1,9 @@
-import { HOME, CONTAINER_SELECTOR} from './common/constants.js';
+import { HOME } from './common/constants.js';
 import { toggleFavoriteStatus } from './events/favorites-events.js';
 import { q } from './events/helpers.js';
-import { loadPage, renderCategory, renderGifDetailed, renderMovieDetails } from './events/navigation-events.js';
+import { loadPage, renderGifDetailed } from './events/navigation-events.js';
 import { renderSearchItems } from './events/search-events.js';
-import { search, displayResults } from './requests/search_test.js';
+import { search } from './requests/search_test.js';
 import { makeUploadRequest } from './events/upload-events.js';
 import { getDetails } from './requests/gif-detailed.js';
 import { toSearchView } from './views/search-view.js';
@@ -18,15 +18,15 @@ document.addEventListener('DOMContentLoaded', () => {
       loadPage(event.target.getAttribute('data-page'));
     }
 
-    // show category events
-    if (event.target.classList.contains("view-category")) {
-      renderCategory(+event.target.getAttribute("category-id"));
-    }
+    // // show category events
+    // if (event.target.classList.contains("view-category")) {
+    //   renderCategory(+event.target.getAttribute("category-id"));
+    // }
 
-    // show movie events
-    if (event.target.classList.contains("button")) {
-      renderMovieDetails(+event.target.getAttribute("data-movie-id"));
-    }
+    // // show movie events
+    // if (event.target.classList.contains("button")) {
+    //   renderMovieDetails(+event.target.getAttribute("data-movie-id"));
+    // }
 
     if (event.target.classList.contains("img")) {
       try {

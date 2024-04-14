@@ -23,23 +23,23 @@ export async function search(query) {
 //     displayResults(results);
 // });
 
-export function displayResults(results) {
-    const searchResultsDiv = document.getElementById('container');
-    searchResultsDiv.innerHTML = ''; 
-    if (results.length === 0) {
-        searchResultsDiv.textContent = 'No results found.';
-        return;
-    }
-    const ul = document.createElement('ul');
-    results.forEach(result => {
-        const li = document.createElement('li');
-        const img = document.createElement('img');
-        img.classList = 'img';
-        img.id = result.id;
-        img.src = result.images.original.url; 
+// export function displayResults(results) {
+//     const searchResultsDiv = document.getElementById('container');
+//     searchResultsDiv.innerHTML = ''; 
+//     if (results.length === 0) {
+//         searchResultsDiv.textContent = 'No results found.';
+//         return;
+//     }
+//     const ul = document.createElement('ul');
+//     results.forEach(result => {
+//         const li = document.createElement('li');
+//         const img = document.createElement('img');
+//         img.classList = 'img';
+//         img.id = result.id;
+//         img.src = result.images.original.url; 
         
-        li.appendChild(img);
-        ul.appendChild(li);
-    });
-    searchResultsDiv.appendChild(ul);
-}
+//         li.appendChild(img);
+//         ul.appendChild(li);
+//     });
+//     searchResultsDiv.appendChild(ul);
+// }
