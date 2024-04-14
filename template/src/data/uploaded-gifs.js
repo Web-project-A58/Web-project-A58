@@ -9,9 +9,4 @@ export const addUploaded = (gifId) => {
   localStorage.setItem('uploaded', JSON.stringify(uploadedGifs));
 };
 
-export const removeUploaded = (gifId) => {
-  uploadedGifs = uploadedGifs.filter(id => id !== gifId);
-  localStorage.setItem('uploaded', JSON.stringify(uploadedGifs));
-};
-
 export const getUploaded = () => [...uploadedGifs];

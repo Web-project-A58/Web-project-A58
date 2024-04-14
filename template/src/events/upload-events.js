@@ -1,4 +1,4 @@
-import { addUploaded, getUploaded } from "../data/uploaded-gifs.js";
+import { addUploaded } from "../data/uploaded-gifs.js";
 
 export const makeUploadRequest = async (fileInput, tags) => {
   const file = fileInput;
@@ -16,8 +16,7 @@ export const makeUploadRequest = async (fileInput, tags) => {
     method: 'POST',
     body: formData,
     headers: {
-      // 'Content-Type': 'application/json',
-      'api_key': apiKey,
+            'api_key': apiKey,
     },
   })
   .then(response => {

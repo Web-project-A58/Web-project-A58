@@ -1,10 +1,12 @@
 import { HOME } from './common/constants.js';
 import { toggleFavoriteStatus } from './events/favorites-events.js';
 import { q } from './events/helpers.js';
-import { loadPage, renderGifDetailed } from './events/navigation-events.js';
+import { loadPage, renderGifDetailed, renderUploadEvent } from './events/navigation-events.js';
 import { renderSearchItems } from './events/search-events.js';
 import { search } from './requests/search_test.js';
 import { makeUploadRequest } from './events/upload-events.js';
+import { fetchUploadRequest } from './requests/request-service.js';
+import { addUploaded } from './data/uploaded-gifs.js';
 
 document.addEventListener('DOMContentLoaded', () => {
 
@@ -36,8 +38,9 @@ document.addEventListener('DOMContentLoaded', () => {
     event.preventDefault()
     const fileInput = document.getElementById('fileInput');
     const file = fileInput.files[0]; 
-    const tagsInput = document.getElementById('tagsInput').value; 
-    makeUploadRequest(file, tagsInput);
+    const tags = document.getElementById('tagsInput').value; 
+    renderUploadEvent(file, tags);
+    
     }
 
   });

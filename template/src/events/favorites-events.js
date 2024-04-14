@@ -21,7 +21,6 @@ export const toggleFavoriteStatus = (gifId) => {
 
 export const renderFavoriteStatus = (gifId) => {
 
-
   const favorites = getFavorites();
 
   return favorites.includes(gifId)

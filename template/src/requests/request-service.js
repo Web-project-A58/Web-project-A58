@@ -1,4 +1,4 @@
-import { API_KEY,API_URL } from '../common/constants.js';
+import { API_KEY, API_URL, API_URL_POST } from '../common/constants.js';
 
 // Display trending gifs -trending endpoint
 
@@ -23,7 +23,7 @@ export const fetchTrendingGifs = async (limit) => {
   }
 };
 
-export const fetchGifsById = async (gifId) => {
+export const fetchGifById = async (gifId) => {
   try {
     const response = await fetch(`${API_URL}/${gifId}?api_key=${API_KEY}`);
     const data = await response.json();
@@ -44,3 +44,25 @@ export const fetchGifsByIds = async (ids) => {
   }
 };
 
+
+export const fetchUploadRequest = async (fileInput, tags) => {
+  
+  const formData = new FormData();
+  formData.append('file', fileInput);
+  formData.append('tags', tags);
+
+try {   
+    const response = await fetch(`${API_URL_POST}?api_key=${API_KEY}`, {
+    method: 'POST',
+    body: formData,
+    headers: {
+            'api_key': API_KEY,
+    },
+  });
+  const data = await response.json();
+  return data.data;
+} catch (error) {
+  console.error("Error uploading GIF", error);
+  throw error;
+}
+}

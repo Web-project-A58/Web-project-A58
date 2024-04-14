@@ -1,6 +1,6 @@
 import { CONTAINER_SELECTOR, FAVORITES, HOME, UPLOAD, UPLOADED } from '../common/constants.js';
 import { getFavorites } from '../data/favorite-gifs.js';
-import { fetchGifsById, fetchGifsByIds } from '../requests/request-service.js';
+import { fetchGifsByIds, fetchUploadRequest } from '../requests/request-service.js';
 import { toUploadedView } from '../views/uploaded-view.js';
 import { toFavoritesView } from '../views/favorites-view.js';
 import { toHomeView } from '../views/home-view.js';
@@ -11,8 +11,8 @@ import { LIMIT_GIFS } from '../common/constants.js';
 import { gifDetailedView } from '../views/gif-details-view.js';
 import { getDetails } from '../requests/gif-detailed.js';
 import { getUploaded } from '../data/uploaded-gifs.js';
-import { toggleFavoriteStatus } from './favorites-events.js';
-import { renderFavoriteStatus } from './favorites-events.js';
+import { addUploaded } from '../data/uploaded-gifs.js';
+
 
 export const loadPage = (page = '') => {
 
@@ -33,15 +33,17 @@ export const loadPage = (page = '') => {
     case UPLOAD:
       setActiveNav(UPLOAD);
       return renderUpload();
-
-
     
-    default: return null;
+      default: return null;
+      
   }
 
 };
 
-
+export const renderUploadEvent = (fileInput, tagsInput) => {
+  fetchUploadRequest(fileInput, tagsInput)
+  .then(data => addUploaded(data.id));
+    }
 
 const renderHome = () => {
   fetchTrendingGifs(LIMIT_GIFS).then((data) => {
@@ -49,12 +51,10 @@ const renderHome = () => {
   });
 };
 
-
-
-const renderUploaded = async () => {
+const renderUploaded = () => {
   const uploadedIds = getUploaded();
   fetchGifsByIds(uploadedIds).then((data) => {
-    q(CONTAINER_SELECTOR).innerHTML = toUploadedView(data);
+  q(CONTAINER_SELECTOR).innerHTML = toUploadedView(data);
   });
 };
   // console.log(uploadedIds);
@@ -68,10 +68,10 @@ const renderUploaded = async () => {
   // }
 //};
 
-const renderFavorites = async () => {
+const renderFavorites = () => {
   const favoriteIds = getFavorites();
   fetchGifsByIds(favoriteIds).then((data) => {
-    q(CONTAINER_SELECTOR).innerHTML = toFavoritesView(data);
+  q(CONTAINER_SELECTOR).innerHTML = toFavoritesView(data);
   });
 };
 
