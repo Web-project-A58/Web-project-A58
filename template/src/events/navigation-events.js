@@ -1,6 +1,6 @@
 import { CONTAINER_SELECTOR, FAVORITES, HOME, UPLOAD, UPLOADED } from '../common/constants.js';
 import { getFavorites } from '../data/favorite-gifs.js';
-import { fetchGifsByIds, fetchUploadRequest } from '../requests/request-service.js';
+import { fetchGifById, fetchGifsByIds, fetchRandomGif, fetchUploadRequest } from '../requests/request-service.js';
 import { toUploadedView } from '../views/uploaded-view.js';
 import { toFavoritesView } from '../views/favorites-view.js';
 import { toHomeView } from '../views/home-view.js';
@@ -75,25 +75,22 @@ const renderUploaded = () => {
   q(CONTAINER_SELECTOR).innerHTML = toUploadedView(data);
   });
 };
-  // console.log(uploadedIds);
-  // try {
-  //   //const uploaded = await fetchGifsById(uploadedIds.join(','));
-  //   //console.log(uploaded);
-  //   const uploadedGifs = await Promise.all(uploadedIds.map(id => fetchGifsById(id)));
-  //   q(CONTAINER_SELECTOR).innerHTML = toUploadedView(uploadedGifs);
-  // } catch (error) {
-  //   console.error('Error fetching uploaded GIFs:', error);
-  // }
-//};
+
 
 /**
  * Renders the favorites page.
  */
 const renderFavorites = () => {
   const favoriteIds = getFavorites();
-  fetchGifsByIds(favoriteIds).then((data) => {
-  q(CONTAINER_SELECTOR).innerHTML = toFavoritesView(data);
-  });
+  if(!favoriteIds.length){
+    fetchRandomGif().then((data) => {
+                    q(CONTAINER_SELECTOR).innerHTML = toFavoritesView([data]);
+      })
+    } else {   fetchGifsByIds(favoriteIds).then((data) => {
+      q(CONTAINER_SELECTOR).innerHTML = toFavoritesView(data);
+      });
+    }
+  
 };
 
 /**

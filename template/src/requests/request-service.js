@@ -1,4 +1,4 @@
-import { API_KEY, API_URL, API_URL_POST, LIMIT_GIFS } from '../common/constants.js';
+import { API_KEY, API_URL, API_URL_POST, API_URL_RANDOM, LIMIT_GIFS } from '../common/constants.js';
 
 // Display trending gifs -trending endpoint
 
@@ -96,7 +96,7 @@ try {
 
 /**
  * Searches for GIFs based on a query string.
- * 
+ *
  * @param {string} query - The search query.
  * @returns {Promise<Object[]>} - A promise that resolves to an array of search result GIFs data.
  */
@@ -132,5 +132,21 @@ export const getDetails = async (gif_id) => {
   } catch (error) {
     console.error('An error occurred during the search:', error);
     return [];
+  }
+};
+
+/**
+ * Fetches trending GIFs from the API.
+ * 
+ * @param {number} limit - The maximum number of GIFs to fetch.
+ * @returns {Promise<Object[]>} - A promise that resolves to an array of trending GIFs data.
+ */
+export const fetchRandomGif = async () => {
+  try {
+    const response = await fetch(`${API_URL_RANDOM}?api_key=${API_KEY}`);
+    const data = await response.json();
+    return data.data;
+  } catch (error) {
+    return console.error("Error fetching random gif:", error);
   }
 };

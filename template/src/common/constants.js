@@ -18,6 +18,8 @@ export const API_URL = 'https://api.giphy.com/v1/gifs';
 
 export const API_URL_POST = 'https://upload.giphy.com/v1/gifs';
 
+export const API_URL_RANDOM = 'https://api.giphy.com/v1/gifs/random';
+
 export const LIMIT_GIFS = 5;
 
 export const DISPLAY_UPLOADED = 'display uploaded';
