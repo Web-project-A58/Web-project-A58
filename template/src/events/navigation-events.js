@@ -14,7 +14,12 @@ import { getUploaded } from '../data/uploaded-gifs.js';
 import { addUploaded } from '../data/uploaded-gifs.js';
 import { toSearchView } from '../views/search-view.js';
 
-
+/**
+ * Loads a specific page based on the provided page parameter.
+ * 
+ * @param {string} [page=''] - The page identifier ('HOME', 'FAVORITES', 'UPLOADED', 'UPLOAD').
+ * @returns {HTMLElement|null} - The rendered content for the specified page, or null if the page identifier is invalid.
+ */
 export const loadPage = (page = '') => {
 
   switch (page) {
@@ -41,17 +46,29 @@ export const loadPage = (page = '') => {
 
 };
 
+/**
+ * Renders the upload event based on the provided file input and tags input.
+ * 
+ * @param {HTMLInputElement} fileInput - The file input element.
+ * @param {HTMLInputElement} tagsInput - The tags input element.
+ */
 export const renderUploadEvent = (fileInput, tagsInput) => {
   fetchUploadRequest(fileInput, tagsInput)
   .then(data => addUploaded(data.id));
     }
 
+/**
+ * Renders the home page.
+ */
 const renderHome = () => {
   fetchTrendingGifs(LIMIT_GIFS).then((data) => {
     q(CONTAINER_SELECTOR).innerHTML = toHomeView(data);
   });
 };
 
+/**
+ * Renders the uploaded page.
+ */
 const renderUploaded = () => {
   const uploadedIds = getUploaded();
   fetchGifsByIds(uploadedIds).then((data) => {
@@ -69,6 +86,9 @@ const renderUploaded = () => {
   // }
 //};
 
+/**
+ * Renders the favorites page.
+ */
 const renderFavorites = () => {
   const favoriteIds = getFavorites();
   fetchGifsByIds(favoriteIds).then((data) => {
@@ -76,17 +96,28 @@ const renderFavorites = () => {
   });
 };
 
+/**
+ * Renders the upload page.
+ */
 const renderUpload = () => {
     q(CONTAINER_SELECTOR).innerHTML = toUploadView();
 };
 
-
+/**
+ * Renders the detailed view of a GIF.
+ * 
+ * @param {string|null} id - The ID of the GIF to render details for.
+ */
 export const renderGifDetailed = async (id = null) => {
     const gif = await getDetails(id);
   q(CONTAINER_SELECTOR).innerHTML = gifDetailedView(gif);
 };
 
-
+/**
+ * Renders the search results.
+ * 
+ * @param {Object[]} gifs - An array of GIF objects representing the search results.
+ */
 export const renderSearchItems = (gifs) => {
   q(CONTAINER_SELECTOR).innerHTML=toSearchView(gifs);
  };

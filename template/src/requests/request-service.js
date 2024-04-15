@@ -13,6 +13,12 @@ import { API_KEY, API_URL, API_URL_POST, LIMIT_GIFS } from '../common/constants.
 // Favorites view - fetch by id
 
 
+/**
+ * Fetches trending GIFs from the API.
+ * 
+ * @param {number} limit - The maximum number of GIFs to fetch.
+ * @returns {Promise<Object[]>} - A promise that resolves to an array of trending GIFs data.
+ */
 export const fetchTrendingGifs = async (limit) => {
   try {
     const response = await fetch(`${API_URL}/trending?api_key=${API_KEY}&limit=${limit}`);
@@ -23,6 +29,12 @@ export const fetchTrendingGifs = async (limit) => {
   }
 };
 
+/**
+ * Fetches a GIF by its ID from the API.
+ * 
+ * @param {string} gifId - The ID of the GIF to fetch.
+ * @returns {Promise<Object>} - A promise that resolves to the GIF data.
+ */
 export const fetchGifById = async (gifId) => {
   try {
     const response = await fetch(`${API_URL}/${gifId}?api_key=${API_KEY}`);
@@ -33,6 +45,13 @@ export const fetchGifById = async (gifId) => {
   }
 };
 
+/**
+ * Fetches GIFs by their IDs from the API.
+ * 
+ * @param {string[]} ids - An array of GIF IDs to fetch.
+ * @returns {Promise<Object[]>} - A promise that resolves to an array of GIFs data.
+ * @throws {Error} - If there is an error fetching GIFs by ID.
+ */
 export const fetchGifsByIds = async (ids) => {
   try {
     const response = await fetch(`${API_URL}?api_key=${API_KEY}&ids=${ids}`);
@@ -45,6 +64,14 @@ export const fetchGifsByIds = async (ids) => {
 };
 
 
+/**
+ * Sends an upload request to the API.
+ * 
+ * @param {File} fileInput - The file input to upload.
+ * @param {string} tags - The tags associated with the upload.
+ * @returns {Promise<Object>} - A promise that resolves to the uploaded GIF data.
+ * @throws {Error} - If there is an error during the upload process.
+ */
 export const fetchUploadRequest = async (fileInput, tags) => {
   const formData = new FormData();
   formData.append('file', fileInput);
@@ -67,6 +94,12 @@ try {
 }
 
 
+/**
+ * Searches for GIFs based on a query string.
+ * 
+ * @param {string} query - The search query.
+ * @returns {Promise<Object[]>} - A promise that resolves to an array of search result GIFs data.
+ */
 export const search = async (query) => {
   try {
     const response = await fetch(`${API_URL}/search?api_key=${API_KEY}&q=${encodeURIComponent(query)}&limit=${LIMIT_GIFS}`);
@@ -82,6 +115,12 @@ export const search = async (query) => {
 };
 
 
+/**
+ * Fetches details of a GIF by its ID from the API.
+ * 
+ * @param {string} gif_id - The ID of the GIF to fetch details for.
+ * @returns {Promise<Object>} - A promise that resolves to the GIF details.
+ */
 export const getDetails = async (gif_id) => {
   try {
     const response = await fetch(`${API_URL}/${gif_id}?api_key=${API_KEY}&gif_id=${gif_id}`);
