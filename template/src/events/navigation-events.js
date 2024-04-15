@@ -9,9 +9,10 @@ import { q, setActiveNav } from './helpers.js';
 import { fetchTrendingGifs } from '../requests/request-service.js';
 import { LIMIT_GIFS } from '../common/constants.js';
 import { gifDetailedView } from '../views/gif-details-view.js';
-import { getDetails } from '../requests/gif-detailed.js';
+import { getDetails } from '../requests/request-service.js';
 import { getUploaded } from '../data/uploaded-gifs.js';
 import { addUploaded } from '../data/uploaded-gifs.js';
+import { toSearchView } from '../views/search-view.js';
 
 
 export const loadPage = (page = '') => {
@@ -84,3 +85,9 @@ export const renderGifDetailed = async (id = null) => {
     const gif = await getDetails(id);
   q(CONTAINER_SELECTOR).innerHTML = gifDetailedView(gif);
 };
+
+
+export const renderSearchItems = (gifs) => {
+  q(CONTAINER_SELECTOR).innerHTML=toSearchView(gifs);
+ };
+ 

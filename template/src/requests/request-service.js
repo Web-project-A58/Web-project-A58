@@ -1,4 +1,4 @@
-import { API_KEY, API_URL, API_URL_POST } from '../common/constants.js';
+import { API_KEY, API_URL, API_URL_POST, LIMIT_GIFS } from '../common/constants.js';
 
 // Display trending gifs -trending endpoint
 
@@ -46,7 +46,6 @@ export const fetchGifsByIds = async (ids) => {
 
 
 export const fetchUploadRequest = async (fileInput, tags) => {
-  
   const formData = new FormData();
   formData.append('file', fileInput);
   formData.append('tags', tags);
@@ -66,3 +65,33 @@ try {
   throw error;
 }
 }
+
+
+export const search = async (query) => {
+  try {
+    const response = await fetch(`${API_URL}/search?api_key=${API_KEY}&q=${encodeURIComponent(query)}&limit=${LIMIT_GIFS}`);
+    if (!response.ok) {
+      throw new Error('Network response was not ok');
+    }
+    const data = await response.json();
+    return data.data;
+  } catch (error) {
+    console.error('An error occurred during the search:', error);
+    return [];
+  }
+};
+
+
+export const getDetails = async (gif_id) => {
+  try {
+    const response = await fetch(`${API_URL}/${gif_id}?api_key=${API_KEY}&gif_id=${gif_id}`);
+    if (!response.ok) {
+      throw new Error('Network response was not ok');
+    }
+    const data = await response.json();
+    return data.data;
+  } catch (error) {
+    console.error('An error occurred during the search:', error);
+    return [];
+  }
+};
