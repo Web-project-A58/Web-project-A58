@@ -7,7 +7,7 @@ import { renderFavoriteStatus } from "../events/favorites-events.js";
  */
 export const toUploadedView = (gifs) => `
 <div id="trending-gifs">
-    <h3>Uploaded</h3>
+    <h1>UPLOADED : </h1>
     ${gifs.map((gif) => {
       return `<img id=${gif.id} class="img" src=
       ${gif.images.original.url}>

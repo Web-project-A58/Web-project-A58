@@ -7,10 +7,10 @@ import { gifDetailedView } from "./gif-details-view.js";
  * @returns {string} - The HTML markup for displaying the favorite GIFs.
  */
 export const toFavoritesView = (gifs) => `
-<div id="movies">
-  <h1>Favorite giphy:</h1>
+<div id="favorites">
+  <h1>FAVORITES GIPHY:</h1>
   <div class="content">
-    ${gifs.map(gif => (gifDetailedView(gif))) || '<p>Add some Giphy to favorites to see them here.</p>'}
+    ${gifs.map(gif => (gifDetailedView(gif))).join('') || '<p>Add some Giphy to favorites to see them here.</p>'}
   </div>
 </div>
 `;
