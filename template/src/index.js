@@ -8,6 +8,13 @@ import { makeUploadRequest } from './events/upload-events.js';
 import { fetchUploadRequest } from './requests/request-service.js';
 import { addUploaded } from './data/uploaded-gifs.js';
 
+/**
+ * Event listener for DOMContentLoaded event, responsible for initializing the page.
+ * It sets up event listeners for various user interactions such as navigation clicks,
+ * GIF clicks, favorite toggling, upload button click, and search button click.
+ * 
+ * @listens DOMContentLoaded
+ */
 document.addEventListener('DOMContentLoaded', () => {
 
 
