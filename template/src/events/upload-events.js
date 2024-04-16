@@ -1,4 +1,9 @@
 /* eslint-disable no-undef */
+/**
+ * Displays a success message on the screen for a specified duration.
+ * @param {string} message - The message to display.
+ * @param {number} duration - The duration in milliseconds for which the message should be displayed.
+ */
 export const displaySuccessMessage = (message, duration) => {
   const successMessage = document.createElement('div');
   successMessage.textContent = message;
@@ -11,6 +16,10 @@ export const displaySuccessMessage = (message, duration) => {
   }, duration);
 };
 
+/**
+ * Displays an error message on the screen.
+ * @param {string} message - The error message to display.
+ */
 export const displayErrorMessage = (message) => {
   const errorMessage = document.createElement('div');
   errorMessage.textContent = message;
@@ -23,6 +32,11 @@ export const displayErrorMessage = (message) => {
   }, 1000); // Display error message for 3 seconds
 };
 
+/**
+ * Validates tags to ensure they are non-empty strings.
+ * @param {string} tags - The tags to validate, separated by commas.
+ * @returns {boolean} - True if the tags are valid, false otherwise.
+ */
 export const validateTags = (tags) => {
   // If tags are empty, return true
   if (!tags.trim()) {
