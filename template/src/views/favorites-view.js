@@ -8,7 +8,7 @@ import { gifDetailedView } from './gif-details-view.js';
  */
 export const toFavoritesView = (gifs) => `
 <div id="favorites">
-  <h1>FAVORITE</h1>
+  <h1>FAVORITES</h1>
   <div class="content">
     ${gifs.map((gif) => (gifDetailedView(gif))).join('')}
   </div>

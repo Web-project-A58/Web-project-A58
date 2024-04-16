@@ -1,3 +1,4 @@
+import { renderFavoriteStatus } from '../events/favorites-events.js';
 /**
  * Generates HTML markup for displaying detailed information about a GIF.
  *
@@ -15,5 +16,6 @@ export const gifDetailedView = (gif) =>
         Username: ${gif.username} <br>
         Rating: ${gif.rating} <br>
         Source post url: ${gif.source_post_url}
+        ${renderFavoriteStatus(gif.id)}
       </div>
   </div>`;

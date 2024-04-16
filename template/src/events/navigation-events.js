@@ -1,4 +1,6 @@
-import { CONTAINER_SELECTOR, FAVORITES, HOME, UPLOAD, UPLOADED } from '../common/constants.js';
+/* eslint-disable max-len */
+/* eslint-disable no-undef */
+import { CONTAINER_SELECTOR, FAVORITES, HOME, MESSAGE_DISPLAY_DURATION, SUCCESSFUL_UPLOAD_MESSAGE, TAGS_ERROR_MESSAGE, UPLOAD, UPLOADED } from '../common/constants.js';
 import { getFavorites } from '../data/favorite-gifs.js';
 import { fetchGifsByIds, fetchRandomGif, fetchUploadRequest } from '../requests/request-service.js';
 import { toUploadedView } from '../views/uploaded-view.js';
@@ -51,13 +53,13 @@ export const loadPage = (page = '') => {
  */
 export const renderUploadEvent = (fileInput, tagsInput) => {
   if (!validateTags(tagsInput)) {
-    displayErrorMessage('Please enter valid tags');
-    return; // Exit the function if tags are invalid
+    displayErrorMessage(TAGS_ERROR_MESSAGE, MESSAGE_DISPLAY_DURATION);
+    return;
   }
   fetchUploadRequest(fileInput, tagsInput)
       .then((data) => {
         addUploaded(data.id);
-        displaySuccessMessage('File uploaded successfully', 800);
+        displaySuccessMessage(SUCCESSFUL_UPLOAD_MESSAGE, MESSAGE_DISPLAY_DURATION);
       })
   ;
 };

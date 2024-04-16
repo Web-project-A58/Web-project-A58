@@ -19,8 +19,9 @@ export const displaySuccessMessage = (message, duration) => {
 /**
  * Displays an error message on the screen.
  * @param {string} message - The error message to display.
+ * @param {number} duration - The duration in milliseconds for which the message should be displayed.
  */
-export const displayErrorMessage = (message) => {
+export const displayErrorMessage = (message, duration) => {
   const errorMessage = document.createElement('div');
   errorMessage.textContent = message;
   errorMessage.classList.add('error-message');
@@ -29,7 +30,7 @@ export const displayErrorMessage = (message) => {
 
   setTimeout(() => {
     document.body.removeChild(errorMessage);
-  }, 1000);
+  }, duration);
 };
 
 /**
