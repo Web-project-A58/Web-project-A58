@@ -1,21 +1,9 @@
+/* eslint-disable max-len */
 import { API_KEY, API_URL, API_URL_POST, API_URL_RANDOM, LIMIT_GIFS } from '../common/constants.js';
-
-// Display trending gifs -trending endpoint
-
-// Search gifs - search endpoint 
-
-// Display gif details - fetch by id
-
-// Upload gif - post request
-
-// Upload view - fetch by id
-
-// Favorites view - fetch by id
-
 
 /**
  * Fetches trending GIFs from the API.
- * 
+ *
  * @param {number} limit - The maximum number of GIFs to fetch.
  * @returns {Promise<Object[]>} - A promise that resolves to an array of trending GIFs data.
  * @throws {Error} - If there is an error during the upload process.
@@ -26,30 +14,13 @@ export const fetchTrendingGifs = async (limit) => {
     const data = await response.json();
     return data.data;
   } catch (error) {
-    return console.error("Error fetching trending gifs:", error);
-  }
-};
-
-/**
- * Fetches a GIF by its ID from the API.
- * 
- * @param {string} gifId - The ID of the GIF to fetch.
- * @returns {Promise<Object>} - A promise that resolves to the GIF data.
- * @throws {Error} - If there is an error during the upload process.
- */
-export const fetchGifById = async (gifId) => {
-  try {
-    const response = await fetch(`${API_URL}/${gifId}?api_key=${API_KEY}`);
-    const data = await response.json();
-    return data.data;
-  } catch (error) {
-    return console.error("Error fetching gif by id:", error);
+    return console.error('Error fetching trending gifs:', error);
   }
 };
 
 /**
  * Fetches GIFs by their IDs from the API.
- * 
+ *
  * @param {string[]} ids - An array of GIF IDs to fetch.
  * @returns {Promise<Object[]>} - A promise that resolves to an array of GIFs data.
  * @throws {Error} - If there is an error fetching GIFs by ID.
@@ -60,7 +31,7 @@ export const fetchGifsByIds = async (ids) => {
     const data = await response.json();
     return data.data;
   } catch (error) {
-    console.error("Error fetching GIFs by ID:", error);
+    console.error('Error fetching GIFs by ID:', error);
     throw error;
   }
 };
@@ -68,7 +39,7 @@ export const fetchGifsByIds = async (ids) => {
 
 /**
  * Sends an upload request to the API.
- * 
+ *
  * @param {File} fileInput - The file input to upload.
  * @param {string} tags - The tags associated with the upload.
  * @returns {Promise<Object>} - A promise that resolves to the uploaded GIF data.
@@ -79,21 +50,21 @@ export const fetchUploadRequest = async (fileInput, tags) => {
   formData.append('file', fileInput);
   formData.append('tags', tags);
 
-try {   
+  try {
     const response = await fetch(`${API_URL_POST}?api_key=${API_KEY}`, {
-    method: 'POST',
-    body: formData,
-    headers: {
-            'api_key': API_KEY,
-    },
-  });
-  const data = await response.json();
-  return data.data;
-} catch (error) {
-  console.error("Error uploading GIF", error);
-  throw error;
-}
-}
+      method: 'POST',
+      body: formData,
+      headers: {
+        'api_key': API_KEY,
+      },
+    });
+    const data = await response.json();
+    return data.data;
+  } catch (error) {
+    console.error('Error uploading GIF', error);
+    throw error;
+  }
+};
 
 
 /**
@@ -120,14 +91,14 @@ export const search = async (query) => {
 
 /**
  * Fetches details of a GIF by its ID from the API.
- * 
- * @param {string} gif_id - The ID of the GIF to fetch details for.
+ *
+ * @param {string} gidId - The ID of the GIF to fetch details for.
  * @returns {Promise<Object>} - A promise that resolves to the GIF details.
  * @throws {Error} - If there is an error during the upload process.
  */
-export const getDetails = async (gif_id) => {
+export const getDetails = async (gidId) => {
   try {
-    const response = await fetch(`${API_URL}/${gif_id}?api_key=${API_KEY}&gif_id=${gif_id}`);
+    const response = await fetch(`${API_URL}/${gidId}?api_key=${API_KEY}&gif_id=${gidId}`);
     if (!response.ok) {
       throw new Error('Network response was not ok');
     }
@@ -141,7 +112,7 @@ export const getDetails = async (gif_id) => {
 
 /**
  * Fetches trending GIFs from the API.
- * 
+ *
  * @param {number} limit - The maximum number of GIFs to fetch.
  * @returns {Promise<Object[]>} - A promise that resolves to an array of trending GIFs data.
  * @throws {Error} - If there is an error during the upload process.
@@ -152,6 +123,6 @@ export const fetchRandomGif = async () => {
     const data = await response.json();
     return data.data;
   } catch (error) {
-    return console.error("Error fetching random gif:", error);
+    return console.error('Error fetching random gif:', error);
   }
 };
