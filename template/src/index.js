@@ -4,7 +4,6 @@ import { q } from './events/helpers.js';
 import { loadPage, renderGifDetailed, renderUploadEvent } from './events/navigation-events.js';
 import { renderSearchItems } from './events/navigation-events.js';
 import { search } from './requests/request-service.js';
-import { makeUploadRequest } from './events/upload-events.js';
 import { fetchUploadRequest } from './requests/request-service.js';
 import { addUploaded } from './data/uploaded-gifs.js';
 
@@ -27,8 +26,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     if (event.target.classList.contains("img")) {
       try {
-        console.log(event.target.id);
-        renderGifDetailed(event.target.id);
+            renderGifDetailed(event.target.id);
     } catch (error) {
         console.error('An error occurred while fetching GIF details:', error);
     }

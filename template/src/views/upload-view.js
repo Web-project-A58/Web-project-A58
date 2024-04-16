@@ -1,6 +1,6 @@
 /**
  * Generates HTML markup for the upload form view.
- * 
+ *
  * @returns {string} - The HTML markup for the upload form view.
  */
 export const toUploadView = () => `
@@ -15,6 +15,10 @@ export const toUploadView = () => `
         <input type="text" id="tagsInput" name="tagsInput">
       </div>
       <button type="button" class="upload-button">Upload</button>
+      <div class="ocean">
+  <div class="wave"></div>
+  <div class="wave wave2"></div>
+</div>
     </form>
   </div>
 `;

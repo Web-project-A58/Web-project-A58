@@ -1,6 +1,6 @@
 import { CONTAINER_SELECTOR, FAVORITES, HOME, UPLOAD, UPLOADED } from '../common/constants.js';
 import { getFavorites } from '../data/favorite-gifs.js';
-import { fetchGifById, fetchGifsByIds, fetchRandomGif, fetchUploadRequest } from '../requests/request-service.js';
+import { fetchGifsByIds, fetchRandomGif, fetchUploadRequest } from '../requests/request-service.js';
 import { toUploadedView } from '../views/uploaded-view.js';
 import { toFavoritesView } from '../views/favorites-view.js';
 import { toHomeView } from '../views/home-view.js';
@@ -13,17 +13,16 @@ import { getDetails } from '../requests/request-service.js';
 import { getUploaded } from '../data/uploaded-gifs.js';
 import { addUploaded } from '../data/uploaded-gifs.js';
 import { toSearchView } from '../views/search-view.js';
+import { displaySuccessMessage, validateTags, displayErrorMessage } from './upload-events.js';
 
 /**
  * Loads a specific page based on the provided page parameter.
- * 
+ *
  * @param {string} [page=''] - The page identifier ('HOME', 'FAVORITES', 'UPLOADED', 'UPLOAD').
  * @returns {HTMLElement|null} - The rendered content for the specified page, or null if the page identifier is invalid.
  */
 export const loadPage = (page = '') => {
-
   switch (page) {
-
     case HOME:
       setActiveNav(HOME);
       return renderHome();
@@ -39,23 +38,29 @@ export const loadPage = (page = '') => {
     case UPLOAD:
       setActiveNav(UPLOAD);
       return renderUpload();
-    
-      default: return null;
-      
-  }
 
+    default: return null;
+  }
 };
 
 /**
  * Renders the upload event based on the provided file input and tags input.
- * 
+ *
  * @param {HTMLInputElement} fileInput - The file input element.
  * @param {HTMLInputElement} tagsInput - The tags input element.
  */
 export const renderUploadEvent = (fileInput, tagsInput) => {
+  if (!validateTags(tagsInput)) {
+    displayErrorMessage('Please enter valid tags');
+    return; // Exit the function if tags are invalid
+  }
   fetchUploadRequest(fileInput, tagsInput)
-  .then(data => addUploaded(data.id));
-    }
+      .then((data) => {
+        addUploaded(data.id);
+        displaySuccessMessage('File uploaded successfully', 800);
+      })
+  ;
+};
 
 /**
  * Renders the home page.
@@ -72,7 +77,7 @@ const renderHome = () => {
 const renderUploaded = () => {
   const uploadedIds = getUploaded();
   fetchGifsByIds(uploadedIds).then((data) => {
-  q(CONTAINER_SELECTOR).innerHTML = toUploadedView(data);
+    q(CONTAINER_SELECTOR).innerHTML = toUploadedView(data);
   });
 };
 
@@ -82,40 +87,39 @@ const renderUploaded = () => {
  */
 const renderFavorites = () => {
   const favoriteIds = getFavorites();
-  if(!favoriteIds.length){
+  if (!favoriteIds.length) {
     fetchRandomGif().then((data) => {
-                    q(CONTAINER_SELECTOR).innerHTML = toFavoritesView([data]);
-      })
-    } else {   fetchGifsByIds(favoriteIds).then((data) => {
+      q(CONTAINER_SELECTOR).innerHTML = toFavoritesView([data]);
+    });
+  } else {
+    fetchGifsByIds(favoriteIds).then((data) => {
       q(CONTAINER_SELECTOR).innerHTML = toFavoritesView(data);
-      });
-    }
-  
+    });
+  }
 };
 
 /**
  * Renders the upload page.
  */
 const renderUpload = () => {
-    q(CONTAINER_SELECTOR).innerHTML = toUploadView();
+  q(CONTAINER_SELECTOR).innerHTML = toUploadView();
 };
 
 /**
  * Renders the detailed view of a GIF.
- * 
+ *
  * @param {string|null} id - The ID of the GIF to render details for.
  */
 export const renderGifDetailed = async (id = null) => {
-    const gif = await getDetails(id);
+  const gif = await getDetails(id);
   q(CONTAINER_SELECTOR).innerHTML = gifDetailedView(gif);
 };
 
 /**
  * Renders the search results.
- * 
+ *
  * @param {Object[]} gifs - An array of GIF objects representing the search results.
  */
 export const renderSearchItems = (gifs) => {
   q(CONTAINER_SELECTOR).innerHTML=toSearchView(gifs);
- };
- 
+};

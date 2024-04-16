@@ -1,46 +1,46 @@
-import { addUploaded } from "../data/uploaded-gifs.js";
+/* eslint-disable no-undef */
+export const displaySuccessMessage = (message, duration) => {
+  const successMessage = document.createElement('div');
+  successMessage.textContent = message;
+  successMessage.classList.add('success-message');
 
-/**
- * Makes an upload request to upload a GIF file to the Giphy API.
- * 
- * @param {File} fileInput - The File object representing the GIF file to upload.
- * @param {string} tags - The tags associated with the upload.
- * @returns {Promise<void>} - A promise that resolves once the upload request is completed successfully.
- * @throws {Error} - If the upload request fails.
- */
-export const makeUploadRequest = async (fileInput, tags) => {
-  const file = fileInput;
-  const apiKey = 'AuFd7NG7BWm1LiIBrMoLT2Br9pIAT8Lr';
-  
-  const formData = new FormData();
-  formData.append('file', file);
-  formData.append('tags', tags);
+  document.body.appendChild(successMessage);
 
-  const url = `https://upload.giphy.com/v1/gifs?api_key=${apiKey}`;
+  setTimeout(() => {
+    document.body.removeChild(successMessage);
+  }, duration);
+};
 
-  
+export const displayErrorMessage = (message) => {
+  const errorMessage = document.createElement('div');
+  errorMessage.textContent = message;
+  errorMessage.classList.add('error-message');
 
-  return await fetch(url, {
-    method: 'POST',
-    body: formData,
-    headers: {
-            'api_key': apiKey,
-    },
-  })
-  .then(response => {
-    if (!response.ok) {
-      throw new Error('Failed to upload file');
-    }
-    return response.json();
-  })
-  .then(data => {
-    addUploaded(data.data.id);
-    console.dir((localStorage.getItem('uploaded')));
-    console.log('File uploaded successfully:', data);
-    
-  })
-  .catch(error => {
-    console.error('Error uploading file:', error);
-    throw error;
-  });
+  document.body.appendChild(errorMessage);
+
+  setTimeout(() => {
+    document.body.removeChild(errorMessage);
+  }, 1000); // Display error message for 3 seconds
+};
+
+export const validateTags = (tags) => {
+  // If tags are empty, return true
+  if (!tags.trim()) {
+    return true;
+  }
+
+  // Split tags by comma and trim whitespace
+  const tagArray = tags.split(',').map((tag) => tag.trim());
+
+  // Check if any tag is empty after trimming
+  if (tagArray.some((tag) => !tag)) {
+    return false;
+  }
+
+  // Check if all tags are non-empty strings
+  if (tagArray.every((tag) => typeof tag === 'string')) {
+    return true;
+  }
+
+  return false;
 };

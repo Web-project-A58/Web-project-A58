@@ -12,7 +12,7 @@ export const EMPTY_HEART = '♡';
 
 export const UPLOAD = 'upload';
 
-export const API_KEY = '0Sq35eno00PGshyiGWA7XKq29DpFx53q';
+export const API_KEY = 'QRtpu48114xaSsIi8NBUTEeINLYD60xj';
 
 export const API_URL = 'https://api.giphy.com/v1/gifs';
 

@@ -1,17 +1,19 @@
+/* eslint-disable no-undef */
 /**
  * Array containing the IDs of uploaded GIFs retrieved from localStorage.
  * @type {string[]}
  */
-let uploadedGifs = JSON.parse(localStorage.getItem('uploaded')) || [];
+// eslint-disable-next-line no-undef
+const uploadedGifs = JSON.parse(localStorage.getItem('uploaded')) || [];
 
 /**
  * Adds a GIF to the list of uploaded GIFs in localStorage.
- * 
+ *
  * @param {string} gifId - The ID of the GIF to add to uploaded GIFs.
  */
 export const addUploaded = (gifId) => {
-  if (uploadedGifs.find(id => id === gifId)) {
-        return;
+  if (uploadedGifs.find((id) => id === gifId)) {
+    return;
   }
 
   uploadedGifs.push(gifId);
@@ -20,7 +22,7 @@ export const addUploaded = (gifId) => {
 
 /**
  * Retrieves the list of uploaded GIFs from localStorage.
- * 
+ *
  * @returns {string[]} - An array containing the IDs of uploaded GIFs.
  */
 export const getUploaded = () => [...uploadedGifs];
