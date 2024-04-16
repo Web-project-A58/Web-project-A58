@@ -77,9 +77,6 @@ export const fetchUploadRequest = async (fileInput, tags) => {
 export const search = async (query) => {
   try {
     const response = await fetch(`${API_URL}/search?api_key=${API_KEY}&q=${encodeURIComponent(query)}&limit=${LIMIT_GIFS}`);
-    if (!response.ok) {
-      throw new Error('Network response was not ok');
-    }
     const data = await response.json();
     return data.data;
   } catch (error) {
@@ -99,9 +96,6 @@ export const search = async (query) => {
 export const getDetails = async (gidId) => {
   try {
     const response = await fetch(`${API_URL}/${gidId}?api_key=${API_KEY}&gif_id=${gidId}`);
-    if (!response.ok) {
-      throw new Error('Network response was not ok');
-    }
     const data = await response.json();
     return data.data;
   } catch (error) {
