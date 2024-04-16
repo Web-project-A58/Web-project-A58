@@ -20,27 +20,19 @@ export const displayErrorMessage = (message) => {
 
   setTimeout(() => {
     document.body.removeChild(errorMessage);
-  }, 1000); // Display error message for 3 seconds
+  }, 1000);
 };
 
 export const validateTags = (tags) => {
-  // If tags are empty, return true
   if (!tags.trim()) {
     return true;
   }
-
-  // Split tags by comma and trim whitespace
   const tagArray = tags.split(',').map((tag) => tag.trim());
-
-  // Check if any tag is empty after trimming
   if (tagArray.some((tag) => !tag)) {
     return false;
   }
-
-  // Check if all tags are non-empty strings
   if (tagArray.every((tag) => typeof tag === 'string')) {
     return true;
   }
-
   return false;
 };
