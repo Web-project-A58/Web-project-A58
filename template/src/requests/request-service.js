@@ -18,6 +18,7 @@ import { API_KEY, API_URL, API_URL_POST, API_URL_RANDOM, LIMIT_GIFS } from '../c
  * 
  * @param {number} limit - The maximum number of GIFs to fetch.
  * @returns {Promise<Object[]>} - A promise that resolves to an array of trending GIFs data.
+ * @throws {Error} - If there is an error during the upload process.
  */
 export const fetchTrendingGifs = async (limit) => {
   try {
@@ -34,6 +35,7 @@ export const fetchTrendingGifs = async (limit) => {
  * 
  * @param {string} gifId - The ID of the GIF to fetch.
  * @returns {Promise<Object>} - A promise that resolves to the GIF data.
+ * @throws {Error} - If there is an error during the upload process.
  */
 export const fetchGifById = async (gifId) => {
   try {
@@ -99,6 +101,7 @@ try {
  *
  * @param {string} query - The search query.
  * @returns {Promise<Object[]>} - A promise that resolves to an array of search result GIFs data.
+ * @throws {Error} - If there is an error during the upload process.
  */
 export const search = async (query) => {
   try {
@@ -120,6 +123,7 @@ export const search = async (query) => {
  * 
  * @param {string} gif_id - The ID of the GIF to fetch details for.
  * @returns {Promise<Object>} - A promise that resolves to the GIF details.
+ * @throws {Error} - If there is an error during the upload process.
  */
 export const getDetails = async (gif_id) => {
   try {
@@ -140,6 +144,7 @@ export const getDetails = async (gif_id) => {
  * 
  * @param {number} limit - The maximum number of GIFs to fetch.
  * @returns {Promise<Object[]>} - A promise that resolves to an array of trending GIFs data.
+ * @throws {Error} - If there is an error during the upload process.
  */
 export const fetchRandomGif = async () => {
   try {
